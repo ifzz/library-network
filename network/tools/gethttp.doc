@@ -1,0 +1,61 @@
+
+gethttp                                                                  gethttp
+
+NAME
+
+  gethttp - get HTTP response utility
+
+SYNOPSIS
+
+  gethttp (flags)
+
+DESCRIPTION
+
+  gethttp is a program that will interact with a HTTP server by sending requests
+  and displaying the responses to standard output.  The program requires at a
+  minimum the host name of the HTTP server and a request parameter string.
+
+  gethttp has a set of control parameters that allow the user to set the network
+  timeout factor, port number of the HTTP server (if not port 80), the location
+  of the temporary output file for the HTTP response, and log file for debugging
+  purposes.
+
+FLAGS
+
+  The following flags are interpreted by gethttp:
+
+  -?  display help
+  -h  host name of HTTP server
+  -p  port number used by HTTP server
+  -r  request parameters
+  -f  response file (temporary output file for HTTP response)
+  -m  HTTP method (either GET or POST)
+  -t  timeout factor (in seconds)
+  -l  log file for debug mode
+  -o  options
+  -v  display version of gethttp
+
+  Options used by gethttp include:
+
+  output-on (default)
+  output-off
+  statistics-on (default)
+  statistics-off
+
+DEFAULTS
+
+  gethttp uses the following default values:
+
+  port number        : 80
+  HTTP response file : /var/tmp/gethttp (temporary file name)
+  HTTP method        : GET
+  log file name      : gethttp
+  output mode        : on
+  statistics mode    : on
+
+NOTES
+
+  Copyright (c) 2001-2015 Software Constructions (SC)
+
+  libnetwork 6.00 network interface library
+

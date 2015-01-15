@@ -1,0 +1,32 @@
+
+gethostname                                                          gethostname
+
+NAME
+
+  gethostname - get DNS host of a IP address utility
+
+SYNOPSIS
+
+  gethostname (flags)
+
+DESCRIPTION
+
+  gethostname is a program that will search for a DNS host (or domain) name of a
+  Internet IP address.
+
+FLAGS
+
+  The following flags are interpreted by gethostname:
+
+  -?  display help
+  -a  Internet IP address
+  -v  display version of gethostname
+
+  Internet IP address must be in standard dot notation (nnn.nnn.nnn.nnn).
+
+NOTES
+
+  Copyright (c) 2001-2015 Software Constructions (SC)
+
+  libnetwork 6.00 network interface library
+
