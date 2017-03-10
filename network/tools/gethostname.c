@@ -4,7 +4,7 @@
 **  libnetwork utility - get host name utility
 **  ------------------------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #include "modules.h"
 
@@ -106,8 +106,10 @@ static void InterruptHandler(void)
 */
 static void DisplayVersion(void)
 {
+    string_c_t release = GetNetworkLibraryVersionRelease();
+
     printf("%s - get host name\n",  _GETHOSTNAME_VERSION_PRODUCT);
-    printf("%s release %s\n\n", _NETWORK_VERSION_NUMBER, _NETWORK_RELEASE_NUMBER);
+    printf("%s tool\n\n", release);
 }
 
 /*

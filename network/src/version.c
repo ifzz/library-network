@@ -4,18 +4,20 @@
 **  libnetwork - library version information
 **  ----------------------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #include "modules.h"
 
 /*
 **  Version information.
 */
-void GetNetworkLibraryVersion(string_c_t version, size_t version_size)
+string_c_t GetNetworkLibraryVersionProduct(void)
 {
-    if (!version) {
-        return;
-    }
-    strcpy_p(version, version_size, (const string_c_t)_NETWORK_VERSION_NUMBER , sizeof(_NETWORK_VERSION_NUMBER));
+    return ((string_c_t)_NETWORK_PRODUCT);
+}
+
+string_c_t GetNetworkLibraryVersionRelease(void)
+{
+    return ((string_c_t)_NETWORK_RELEASE);
 }
 

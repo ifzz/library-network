@@ -1,9 +1,11 @@
 # ------------------------------------------------------------------------------
-# libnetwork 
 #
-# version 6.0.0 release 1
+# makefile.os
 #
-# Software Constructions (SC) copyright (c) 2001-2015 CONFIDENTIAL/PROPRIETARY
+# libnetwork library version 7.0.0 release 1
+#
+# copyright 2001-2016 Code Construct Systems (CCS) ( CONFIDENTIAL/PROPRIETARY )
+#
 # ------------------------------------------------------------------------------
 
 # Open systems OS/OE port

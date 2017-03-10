@@ -4,7 +4,7 @@
 **  libnetwork - network interface functions
 **  ----------------------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #ifndef __NETWORK_H
 #define __NETWORK_H
@@ -86,26 +86,6 @@
 #endif
 
 /*
-**  Check if product version and release number strings are defined in another include file.
-*/
-#ifdef  _NETWORK_PRODUCT
-#error  _NETWORK_PRODUCT is defined in another include file
-#endif
-#ifdef  _NETWORK_VERSION_NUMBER
-#error  _NETWORK_VERSION_NUMBER  is defined in another include file
-#endif
-#ifdef  _NETWORK_RELEASE_NUMBER
-#error  _NETWORK_RELEASE_NUMBER is defined in another include file
-#endif
-
-/*
-**  Define product version and release number strings.
-*/
-#define _NETWORK_PRODUCT "libnetwork"
-#define _NETWORK_VERSION_NUMBER "6.0.0"
-#define _NETWORK_RELEASE_NUMBER "1"
-
-/*
 **  Define HTTP server action request structure and type.
 */
 typedef struct HttpServerActionRequest {
@@ -155,7 +135,8 @@ extern int HttpEncodeUrlParameter(string_c_t, const size_t, const size_t);
 extern void HttpDebugPrintServerActionRequest(HTTP_SERVER_ACTION_REQUEST *);
 extern int GetHostIPAddress(const string_c_t, string_c_t, size_t);
 extern int GetHostName(const string_c_t, string_c_t, size_t);
-extern void GetNetworkLibraryVersion(string_c_t, size_t);
+extern string_c_t GetNetworkLibraryVersionProduct(void);
+extern string_c_t GetNetworkLibraryVersionRelease(void);
 
 #endif /* __NETWORK_H */
 

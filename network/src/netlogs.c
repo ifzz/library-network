@@ -4,16 +4,16 @@
 **  libnetwork - library logging functions
 **  --------------------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #include "modules.h"
 
 /*
 **  Log file directory name, name and file open flag.
 */
-static char NetLogFileDirectoryName[_MAX_FILENAME_SIZE + 1];
-static char NetLogFileName[_MAX_FILENAME_SIZE + 1];
-static bool_c_t NetLogFileOpened = FALSE;
+static char net_log_file_directory_name[_MAX_FILENAME_SIZE + 1];
+static char net_log_file_name[_MAX_FILENAME_SIZE + 1];
+static bool_c_t net_log_file_opened = FALSE;
 
 /*
 **  Log file stream file pointer (buffered I/O stream).
@@ -23,7 +23,7 @@ static FILE *fp = NULL;
 /*
 **  Local function prototypes.
 */
-static void CreateNetLogFileName(void);
+static void Createnet_log_file_name(void);
 static void PrintLocalTime(void);
 
 /*
@@ -36,10 +36,10 @@ void NetLogFileDirectory(const string_c_t directory_name, size_t directory_name_
     }
 
     if (directory_name && strlen(directory_name) > 0) {
-        strcpy_p(NetLogFileDirectoryName, sizeof(NetLogFileDirectoryName), directory_name, directory_name_size);
+        strcpy_p(net_log_file_directory_name, sizeof(net_log_file_directory_name), directory_name, directory_name_size);
     }
     else {
-        strcpy_p(NetLogFileDirectoryName, sizeof(NetLogFileDirectoryName), (const string_c_t)_LOGFILE_NAME, sizeof(_LOGFILE_NAME));
+        strcpy_p(net_log_file_directory_name, sizeof(net_log_file_directory_name), (const string_c_t)_LOGFILE_NAME, sizeof(_LOGFILE_NAME));
     }
 }
 
@@ -61,14 +61,14 @@ void NetLogFileSetFileName(const string_c_t filename)
     /*
     **  Use default directory name if no directory name was given.
     */
-    if (strlen(NetLogFileDirectoryName) < 1) {
-        strcpy_p(NetLogFileDirectoryName, sizeof(NetLogFileDirectoryName), (const string_c_t)_LOGFILE_NAME, sizeof(_LOGFILE_NAME));
+    if (strlen(net_log_file_directory_name) < 1) {
+        strcpy_p(net_log_file_directory_name, sizeof(net_log_file_directory_name), (const string_c_t)_LOGFILE_NAME, sizeof(_LOGFILE_NAME));
     }
 
     /*
     **  Format log file name using directory, filename and current local system date.
     */
-    strfmt_p(NetLogFileName, sizeof(NetLogFileName), (const string_c_t)"%s/%s.log.%02d%02d%02d", NetLogFileDirectoryName, filename, t.tm_mon + 1, t.tm_mday, t.tm_year % 100);
+    strfmt_p(net_log_file_name, sizeof(net_log_file_name), (const string_c_t)"%s/%s.log.%02d%02d%02d", net_log_file_directory_name, filename, t.tm_mon + 1, t.tm_mday, t.tm_year % 100);
 }
 
 /*
@@ -82,19 +82,19 @@ void NetLogFileOpen(void)
     /*
     **  Create log file name if log file name does not exist.
     */
-    if (strlen(NetLogFileName) < 1) {
-        CreateNetLogFileName();
+    if (strlen(net_log_file_name) < 1) {
+        Createnet_log_file_name();
     }
 
     /*
     **  Set file mode to either append or read/write.
     */
-    if (NetLogFileOpened == TRUE) {
+    if (net_log_file_opened == TRUE) {
         strcpy_p(mode, sizeof(mode), (const string_c_t)_F_AP_BIN, sizeof(_F_AP_BIN));
     }
     else {
-        NetLogFileOpened = TRUE;
-        if ((file_status = fopen_p(&fp, NetLogFileName, (const string_c_t)_F_RO_BIN)) != 0) {
+        net_log_file_opened = TRUE;
+        if ((file_status = fopen_p(&fp, net_log_file_name, (const string_c_t)_F_RO_BIN)) != 0) {
             strcpy_p(mode, sizeof(mode), (const string_c_t)_F_RW_BIN, sizeof(_F_RW_BIN));
         }
         else {
@@ -105,7 +105,7 @@ void NetLogFileOpen(void)
     /*
     **  Open log file using specified mode.
     */
-    if ((file_status = fopen_p(&fp, NetLogFileName, (const string_c_t)mode)) != 0) {
+    if ((file_status = fopen_p(&fp, net_log_file_name, (const string_c_t)mode)) != 0) {
         printf("error-> unable to open log file (errno %d)\n", errno);
         exit(EXIT_FAILURE);
     }
@@ -148,7 +148,7 @@ void NetLogFilePrint(string_c_t format, ...)
     **  Change permission codes on log file.
     */
 #ifdef _POSIX_ENVIRONMENT
-    if (chmod(NetLogFileName, fmode) == -1) {
+    if (chmod(net_log_file_name, fmode) == -1) {
         printf("error-> unable to change file permission codes (errno %d)\n", errno);
     }
 #endif
@@ -188,7 +188,7 @@ void NetLogFileClose(void)
 /*
 **  Create log file name using environment variables and current system date.
 */
-static void CreateNetLogFileName(void)
+static void Createnet_log_file_name(void)
     {
     time_t lt;
     struct tm t;
@@ -203,14 +203,14 @@ static void CreateNetLogFileName(void)
     /*
     **  Use default directory name if no directory name was given.
     */
-    if (strlen(NetLogFileDirectoryName) < 1) {
-        strcpy_p(NetLogFileDirectoryName, sizeof(NetLogFileDirectoryName), (const string_c_t)_LOGFILE_NAME, sizeof(_LOGFILE_NAME));
+    if (strlen(net_log_file_directory_name) < 1) {
+        strcpy_p(net_log_file_directory_name, sizeof(net_log_file_directory_name), (const string_c_t)_LOGFILE_NAME, sizeof(_LOGFILE_NAME));
     }
 
     /*
     **  Format log file name using directory, and current local system date.
     */
-    strfmt_p(NetLogFileName, sizeof(NetLogFileName), (const string_c_t)"%s.log.%02d%02d%02d", NetLogFileDirectoryName, t.tm_mon + 1, t.tm_mday, t.tm_year % 100);
+    strfmt_p(net_log_file_name, sizeof(net_log_file_name), (const string_c_t)"%s.log.%02d%02d%02d", net_log_file_directory_name, t.tm_mon + 1, t.tm_mday, t.tm_year % 100);
 }
 
 /*

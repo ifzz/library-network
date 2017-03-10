@@ -4,7 +4,7 @@
 **  libnetwork utility - get HTTP response utility
 **  ----------------------------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #ifndef __GETHTTP_H
 #define __GETHTTP_H

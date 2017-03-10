@@ -4,14 +4,14 @@
 **  libnetwork - HTTP networking functions
 **  --------------------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #include "modules.h"
 
 /*
 **  Print warning messages flag.
 */
-static bool_c_t PrintWarningMessages = FALSE;
+static bool_c_t print_warning_messages = FALSE;
 
 /*
 **  Local function prototypes.
@@ -270,7 +270,7 @@ void HttpPrintWarningMessages(int flag)
     **  Set print warning messages switch if flag value is valid.
     */
     if (flag == TRUE || flag == FALSE) {
-        PrintWarningMessages = (bool_c_t)flag;
+        print_warning_messages = (bool_c_t)flag;
     }
 }
 
@@ -526,7 +526,7 @@ int HttpSendServerRequest(HTTP_SERVER_ACTION_REQUEST *hsar)
         **  Write contents of response buffer to response file.
         */
         if (fwrite (buffer, 1, count, hsar->rsp_fp) != count) {
-            if (PrintWarningMessages == TRUE) {
+            if (print_warning_messages == TRUE) {
                 NetLogFilePrint((string_c_t)"error-> write() failed: write error to response file (errno %d)\n", errno);
             }
         }
@@ -648,7 +648,7 @@ int HttpSendServerRequestNoTimeout(HTTP_SERVER_ACTION_REQUEST *hsar)
         **  Write contents of response buffer to response file.
         */
         if (fwrite (buffer, 1, count, hsar->rsp_fp) != count) {
-            if (PrintWarningMessages == TRUE) {
+            if (print_warning_messages == TRUE) {
                 NetLogFilePrint((string_c_t)"error-> write() failed: write error to response file (errno %d)\n", errno);
             }
         }
@@ -684,7 +684,7 @@ int HttpSendServerRequestNoTimeout(HTTP_SERVER_ACTION_REQUEST *hsar)
 */
 static void AlarmHandler(int signal)
 {
-    if (PrintWarningMessages == TRUE) {
+    if (print_warning_messages == TRUE) {
         NetLogFilePrint((string_c_t)"error-> signal alarm(SIGALRM): alarm() timeout condition (%d)\n", signal);
     }
 }

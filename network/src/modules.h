@@ -4,7 +4,7 @@
 **  libnetwork - modules
 **  --------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #ifndef __MODULES_H
 #define __MODULES_H

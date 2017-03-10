@@ -4,18 +4,18 @@
 **  libnetwork - HTTP networking utility functions
 **  ----------------------------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #include "modules.h"
 
 /*
 **  URL character representations.
 */
-struct URLCharReps {
+static struct {
        char character;
        const char *replacement;
 }
-URLCharRepsTable[] = {
+url_char_reps_tbl[] = {
        { '\t', "%09" }, { '\n', "%0A" }, { '\r', "%0D" }, { ' ',  "%20" },
        { '!',  "%21" }, { '"',  "%22" }, { '#',  "%23" }, { '$',  "%24" },
        { '%',  "%25" }, { '&',  "%26" }, { '\'', "%27" }, { '(',  "%28" },
@@ -418,11 +418,11 @@ static bool_c_t SpecialCharactersFilter(char c, string_c_t encoded, int j)
     /*
     **  Search for matching special character in URL replacement table.
     */
-    for (k = 0; URLCharRepsTable[k].character; k++) {
-        if (c == URLCharRepsTable[k].character) {
-            encoded[j] = URLCharRepsTable[k].replacement[0]; j++;
-            encoded[j] = URLCharRepsTable[k].replacement[1]; j++;
-            encoded[j] = URLCharRepsTable[k].replacement[2];
+    for (k = 0; url_char_reps_tbl[k].character; k++) {
+        if (c == url_char_reps_tbl[k].character) {
+            encoded[j] = url_char_reps_tbl[k].replacement[0]; j++;
+            encoded[j] = url_char_reps_tbl[k].replacement[1]; j++;
+            encoded[j] = url_char_reps_tbl[k].replacement[2];
             return (TRUE);
         }
     }

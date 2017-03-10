@@ -4,7 +4,7 @@
 **  libnetwork - utility functions
 **  ------------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #ifndef __UTILS_H
 #define __UTILS_H

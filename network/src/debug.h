@@ -4,7 +4,7 @@
 **  libnetwork - debug functions
 **  ----------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #ifndef __DEBUG_H
 #define __DEBUG_H

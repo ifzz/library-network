@@ -4,7 +4,7 @@
 **  libnetwork utility - get HTTP response utility
 **  ----------------------------------------------
 **
-**  copyright 2001-2015 Software Constructions (SC)
+**  copyright 2001-2017 Code Construct Systems (CCS)
 */
 #include "modules.h"
 
@@ -366,8 +366,10 @@ static void DisplayStatistics(HTTP_PARAMETERS *hp, HTTP_STATISTICS *hs)
 */
 static void DisplayVersion(void)
 {
+    string_c_t release = GetNetworkLibraryVersionRelease();
+
     printf("%s - get HTTP response\n", _GETHTTP_VERSION_PRODUCT);
-    printf("%s release %s\n\n", _NETWORK_VERSION_NUMBER, _NETWORK_RELEASE_NUMBER);
+    printf("%s tool\n\n", release);
 }
 
 /*
